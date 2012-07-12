@@ -29,4 +29,21 @@
 			</list>
 		</property>
 	</bean>
+
+	<bean name="job2"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="billingService" />
+		<property name="targetMethod" value="generateBillingReport" />
+	</bean>
+	<bean id="trigger2" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="job2" />
+		<property name="cronExpression" value="0/5 * * * * ?" />
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="trigger2" />
+			</list>
+		</property>
+	</bean>
 </beans>

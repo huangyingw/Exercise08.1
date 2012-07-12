@@ -13,5 +13,11 @@ public class BillingServiceImpl implements BillingService {
 
 		System.out.println(currenttime+"    printing bills");
 	}
+	public void generateBillingReport() {
+		Date date =  Calendar.getInstance().getTime();
+		DateFormat timeFormatter = DateFormat.getTimeInstance(DateFormat.DEFAULT);
+		String currenttime = timeFormatter.format(date);
 
+		System.out.println(currenttime+"    generate bills");
+	}
 }
